@@ -1,3 +1,4 @@
+<%- if @ossec_local_files.is_a?(Array) -%>
 <%- @ossec_local_files.each do |localfile| -%>
   <localfile>
     <log_format><%= localfile['log_format'] %></log_format>
@@ -50,4 +51,4 @@
     <frequency>360</frequency>
   </localfile>
 <%- end %>
-
+<%- end %>
