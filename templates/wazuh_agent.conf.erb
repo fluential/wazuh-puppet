@@ -8,6 +8,14 @@
   <%- end -%>
     <port><%= @ossec_port %></port>
   </server>
+  <%- if @wazuh_reporting_endpoint2 then -%>  
+  <server>
+    <address><%= @wazuh_reporting_endpoint2 %></address>
+    <protocol><%= @ossec_protocol %></protocol>
+    <port><%= @ossec_port %></port>
+    
+  </server>
+    <%- end -%>
   <%- if @ossec_config_profiles then -%>
     <config-profile><%= @ossec_config_profiles.join(',') %></config-profile>
   <%- end -%>
