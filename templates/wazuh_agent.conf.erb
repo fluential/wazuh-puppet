@@ -1,14 +1,26 @@
   <client>
-  <server>
+  <%- if @wazuh_reporting_endpoint_list then -%>
+  <%- @wazuh_reporting_endpoint_list.each do |hostname| -%>
+    <server>
+      <address><%= hostname %></address>
+  <%- if @ossec_protocol then -%>
+      <protocol><%= @ossec_protocol %></protocol>
+  <%- end -%>
+      <port><%= @ossec_port %></port>
+    </server>
+  <%- end -%>
+  <%- else -%>
+    <server>
   <%- if @wazuh_reporting_endpoint then -%>
-    <address><%= @wazuh_reporting_endpoint %></address>
+      <address><%= @wazuh_reporting_endpoint %></address>
   <%- end -%>
   <%- if @ossec_protocol then -%>
-    <protocol><%= @ossec_protocol %></protocol>
+      <protocol><%= @ossec_protocol %></protocol>
   <%- end -%>
-    <port><%= @ossec_port %></port>
-  </server>
-  <%- if @ossec_config_profiles then -%>
+      <port><%= @ossec_port %></port>
+    </server>
+  <%- end -%>  
+    <%- if @ossec_config_profiles then -%>
     <config-profile><%= @ossec_config_profiles.join(',') %></config-profile>
   <%- end -%>
   <%- if @ossec_notify_time then -%>
