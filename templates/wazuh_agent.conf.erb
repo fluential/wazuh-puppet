@@ -1,4 +1,4 @@
-  <client>
+ <client>
   <%- if @wazuh_reporting_endpoint_list then -%>
   <%- @wazuh_reporting_endpoint_list.each do |hostname| -%>
     <server>
@@ -9,7 +9,7 @@
       <port><%= @ossec_port %></port>
     </server>
   <%- end -%>
-  <%- else -%>
+  <%- end -%>
     <server>
   <%- if @wazuh_reporting_endpoint then -%>
       <address><%= @wazuh_reporting_endpoint %></address>
@@ -19,7 +19,6 @@
   <%- end -%>
       <port><%= @ossec_port %></port>
     </server>
-  <%- end -%>  
     <%- if @ossec_config_profiles then -%>
     <config-profile><%= @ossec_config_profiles.join(',') %></config-profile>
   <%- end -%>
@@ -36,7 +35,7 @@
     <auto_restart><%= @ossec_auto_restart %></auto_restart>
   <%- end -%>
   </client>
-  
+
   <logging>
     <log_format>plain</log_format>
   </logging>
@@ -47,4 +46,3 @@
     <queue_size><%= @client_buffer_queue_size %></queue_size>
     <events_per_second><%= @client_buffer_events_per_second %></events_per_second>
   </client_buffer>
-
