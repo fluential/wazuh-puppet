@@ -1,6 +1,6 @@
   <client>
-  <%- if not @wazuh_reporting_endpoint_list.nil? -%>
-  <%- @wazuh_reporting_endpoint_list.each do |hostname| -%>
+  <%- if not @wazuh_reporting_endpoint.nil? -%>
+  <%- @wazuh_reporting_endpoint.each do |hostname| -%>
   <server>
     <address><%= hostname %></address>
   <%- if @ossec_protocol then -%>
@@ -10,15 +10,6 @@
   </server>
   <%- end -%>
   <%- end -%>
-  <server>
-  <%- if @wazuh_reporting_endpoint then -%>
-    <address><%= @wazuh_reporting_endpoint %></address>
-  <%- end -%>
-  <%- if @ossec_protocol then -%>
-    <protocol><%= @ossec_protocol %></protocol>
-  <%- end -%>
-    <port><%= @ossec_port %></port>
-  </server>
   <%- if @operatingsystem == 'Ubuntu' or @operatingsystem == 'ubuntu' -%>
     <config-profile><%= @ossec_config_ubuntu_profiles %></config-profile>
   <%- elsif @operatingsystem == 'CentOS' or @operatingsystem == 'Centos' or @operatingsystem == 'centos' -%>
